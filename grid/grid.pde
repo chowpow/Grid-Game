@@ -14,8 +14,8 @@ void setup() {
 
   board = new int[cols][rows];
   
-  playerOnePlayed = false;
-  playerTwoPlayed = false;
+  
+ 
 
 
 }
@@ -26,14 +26,13 @@ void draw() {
 
 void displayBoard() {
 
-
   for (int x = 0; x < cols; x++) {
     for (int y = 0; y < rows; y++) {
 
       fill(255);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
       
-      playerTurns();
+      playerOneTurn();
     }
   }
 }
@@ -42,9 +41,12 @@ void displayBoard() {
 void mousePressed() {
   int xCord = int(mouseX/cellWidth);
   int yCord = int(mouseY/cellHeight);
+  
+  if (playerOnePlayed == false) {
 
-  if (board[xCord][yCord] == 0) {
-    board[xCord][yCord] = 1;
+    if (board[xCord][yCord] == 0) {
+      board[xCord][yCord] = 1;
+    }
   }
 }
 
