@@ -1,6 +1,7 @@
 int[][] board;
 int cols, rows;
 float cellWidth, cellHeight;
+boolean gameOver = false;
 
 void setup() {
   size(800, 800);
@@ -31,8 +32,11 @@ void displayBoard() {
 
       fill(255);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+      if (gameOver == false) {
       
-      playerOneTurn();
+        playerOneTurn();
+        playerTwoTurn();
+      }
     }
   }
 }
