@@ -27,19 +27,17 @@ void playerTwoTurn() {
       int yOffset = int(random(-1, 1));
 
       if (playerTwoPlayed == false) {
-        if (board[x+xOffset][y+yOffset] == 0) {
-          board[x+xOffset][y+yOffset] = 2;
-          fill(255);
-          ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);
-        //} else {
-        //  while (board[x+xOffset][y+yOffset] != 0) {
-        //    xOffset = int(random(-1, 1));
-        //    yOffset = int(random(-1, 1));
-        //  }
+        if (board[x][y] == 1) {
+          if (board[x+1][y] == 0) {
+            board[x+1][y] = 2;
+          } else {
+              if (board[x+xOffset][y+yOffset] != 0) {
+                xOffset = int(random(-1, 1));
+                yOffset = int(random(-1, 1));
+            }
+          }
+          playerTwoPlayed = true;
         }
-          
-        
-        playerTwoPlayed = true;
       }
     }
   }

@@ -32,10 +32,15 @@ void displayBoard() {
 
       fill(255);
       rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
+     
       if (gameOver == false) {
       
         playerOneTurn();
-        playerTwoTurn();
+        playerTwoTurn();   
+      }
+      if (board[x][y] == 2) {
+        fill(255);
+        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);
       }
     }
   }
