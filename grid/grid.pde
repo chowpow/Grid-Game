@@ -9,20 +9,18 @@ void setup() {
   rows = 10;
 
   ellipseMode(CENTER);
+  textAlign(CENTER);
+  textSize(30);
 
   cellWidth = width / cols;
   cellHeight = height / rows;
 
   board = new int[cols][rows];
-  
-  
- 
-
-
 }
 
 void draw() {
   displayBoard();
+  checkIfGameOver();
 }
 
 void displayBoard() {
@@ -38,6 +36,11 @@ void displayBoard() {
         playerOneTurn();
         playerTwoTurn();   
       }
+      if (board[x][y] == 1) {
+        fill(0);
+        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);
+      }
+      
       if (board[x][y] == 2) {
         fill(255);
         ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);

@@ -10,8 +10,7 @@ void playerOneTurn() {
 
       if (playerOnePlayed == false) {
         if (board[x][y] == 1) {
-          fill(0);
-          ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);
+
           playerOnePlayed = true;
         }
       }
@@ -23,21 +22,33 @@ void playerTwoTurn() {
   playerTwoPlayed = false;
   for (int x = 0; x < cols; x++) {
     for (int y = 0; y < rows; y++) {
-      int xOffset = int(random(-1, 1));
-      int yOffset = int(random(-1, 1));
+      int xOffset = 0;
+      int yOffset = 0;
 
-      if (playerTwoPlayed == false) {
+      if (playerOnePlayed == true) {
         if (board[x][y] == 1) {
-          if (board[x+1][y] == 0) {
-            board[x+1][y] = 2;
+          if (x == 0) {
+            xOffset = 1;
+          } else if (x == 9) {
+            xOffset = -1;
           } else {
-              if (board[x+xOffset][y+yOffset] != 0) {
-                xOffset = int(random(-1, 1));
-                yOffset = int(random(-1, 1));
-            }
+            xOffset = 1;
           }
-          playerTwoPlayed = true;
+          board[x+xOffset][y] = 2;
+          playerOnePlayed = false;
         }
+      }
+    }
+  }
+}
+
+void checkIfGameOver() {
+  for (int x = 0; x < cols; x++) {
+    for (int y = 0; y < rows; y++) {
+
+      if (board[0][0] == 1 && board[1][0] == 1 && board[2][0] == 1 && board[3][0] == 1) {
+        fill(255, 0, 0);
+        text("Game over!", 400, 400);
       }
     }
   }
