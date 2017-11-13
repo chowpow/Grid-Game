@@ -1,4 +1,6 @@
 boolean playerOnePlayed, playerTwoPlayed;
+int[] randomNumber = {0, 1};
+
 
 void playerOneTurn() {
   playerOnePlayed = false;
@@ -10,6 +12,7 @@ void playerOneTurn() {
 
       if (playerOnePlayed == false) {
         if (board[x][y] == 1) {
+          stroke(0, 0, 255);
 
           playerOnePlayed = true;
         }
@@ -20,6 +23,8 @@ void playerOneTurn() {
 
 void playerTwoTurn() {
   playerTwoPlayed = false;
+  int randomValue = int(random(randomNumber.length));
+  
   for (int x = 0; x < cols; x++) {
     for (int y = 0; y < rows; y++) {
       int xOffset = 0;
@@ -27,14 +32,7 @@ void playerTwoTurn() {
 
       if (playerOnePlayed == true) {
         if (board[x][y] == 1) {
-          if (x == 0) {
-            xOffset = 1;
-          } else if (x == 9) {
-            xOffset = -1;
-          } else {
-            xOffset = 1;
-          }
-          board[x+xOffset][y] = 2;
+        
           playerOnePlayed = false;
         }
       }
@@ -46,9 +44,9 @@ void checkIfGameOver() {
   for (int x = 0; x < cols; x++) {
     for (int y = 0; y < rows; y++) {
 
-      if (board[0][0] == 1 && board[1][0] == 1 && board[2][0] == 1 && board[3][0] == 1) {
+      if (board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1) {
         fill(255, 0, 0);
-        text("Game over!", 400, 400);
+        text("Game over!", 300, 300);
       }
     }
   }

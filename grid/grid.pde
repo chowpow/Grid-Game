@@ -4,11 +4,12 @@ float cellWidth, cellHeight;
 boolean gameOver = false;
 
 void setup() {
-  size(800, 800);
-  cols = 10;
-  rows = 10;
+  size(600, 600);
+  cols = 3;
+  rows = 3;
 
   ellipseMode(CENTER);
+  strokeWeight(5);
   textAlign(CENTER);
   textSize(30);
 
@@ -37,13 +38,14 @@ void displayBoard() {
         playerTwoTurn();   
       }
       if (board[x][y] == 1) {
-        fill(0);
-        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);
+        
+        noFill();
+        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 150, 150);
       }
       
       if (board[x][y] == 2) {
         fill(255);
-        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 70, 70);
+        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 90, 90);
       }
     }
   }
