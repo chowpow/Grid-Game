@@ -1,53 +1,31 @@
-boolean playerOnePlayed, playerTwoPlayed;
-int[] randomNumber = {0, 1};
-
-
-void playerOneTurn() {
-  playerOnePlayed = false;
-
-
-  for (int x = 0; x < cols; x++) {
-    for (int y = 0; y < rows; y++) {
-
-
-      if (playerOnePlayed == false) {
-        if (board[x][y] == 1) {
-          stroke(0, 0, 255);
-
-          playerOnePlayed = true;
-        }
-      }
-    }
-  }
-}
+boolean playerOnePlayed, playerTwoPlayed; //<>//
 
 void playerTwoTurn() {
   playerTwoPlayed = false;
-  int randomValue = int(random(randomNumber.length));
-  
-  for (int x = 0; x < cols; x++) {
-    for (int y = 0; y < rows; y++) {
-      int xOffset = 0;
-      int yOffset = 0;
 
-      if (playerOnePlayed == true) {
-        if (board[x][y] == 1) {
-        
-          playerOnePlayed = false;
+  if (playerOnePlayed == true) {
+    int x = 0;
+    while (x < cols && playerTwoPlayed == false)
+    {
+      int y = 0;
+      while (y < rows && playerTwoPlayed == false)
+      {
+        if (board[x][y] == 0) {
+          board[x][y] = 2;
+          playerTwoPlayed = true;
+          println(x, y);
         }
+        y++;
       }
+      x++;
     }
   }
+  playerOnePlayed = false;
 }
 
 void checkIfGameOver() {
-  for (int x = 0; x < cols; x++) {
-    for (int y = 0; y < rows; y++) {
-
-      if (board[0][0] == 1 && board[0][1] == 1 && board[0][2] == 1) {
-        fill(255, 0, 0);
-        text("Game over!", 300, 300);
-      }
-    }
-  }
-}
+  for (int x = 0; x < cols; x++) 
+  {
+    for (int y = 0; y < rows; y++) 
+    {
+      if (board[

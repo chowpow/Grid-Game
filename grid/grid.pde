@@ -1,9 +1,12 @@
-int[][] board;
+int [][] board;
 int cols, rows;
+int xLineStart, yLineStart, lineSpace;
+
 float cellWidth, cellHeight;
-boolean gameOver = false;
+boolean gameover = false;
 
 void setup() {
+
   size(600, 600);
   cols = 3;
   rows = 3;
@@ -15,52 +18,73 @@ void setup() {
 
   cellWidth = width / cols;
   cellHeight = height / rows;
+  lineSpace = 30;
 
-  board = new int[cols][rows];
+  board = new int[cols][cols];
 }
 
 void draw() {
   displayBoard();
-  checkIfGameOver();
+  gameBoard();
+  //checkIfGameOver();
 }
 
 void displayBoard() {
-
-  for (int x = 0; x < cols; x++) {
-    for (int y = 0; y < rows; y++) {
-
+  for (int x = 0; x < cols; x++) 
+  {
+    for (int y = 0; y < rows; y++)
+    {
       fill(255);
-      rect(x*cellWidth, y*cellHeight, cellWidth, cellHeight);
-     
-      if (gameOver == false) {
-      
-        playerOneTurn();
-        playerTwoTurn();   
-      }
+      stroke(0);
+      strokeWeight(5);
+      rect(x*cellWidth, y*cellWidth, cellWidth, cellHeight);
+    }
+  }
+}
+
+void gameBoard() {
+
+  for (int x = 0; x < cols; x++) 
+  {
+    for (int y = 0; y < rows; y++)
+    {
+      xLineStart = x*int(cellWidth);
+      yLineStart = y*int(cellHeight);
+
       if (board[x][y] == 1) {
-        
+
         noFill();
+        stroke(0, 0, 255);
+        strokeWeight(5);
         ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 150, 150);
-      }
+      } 
       
-      if (board[x][y] == 2) {
-        fill(255);
-        ellipse(x*cellWidth+cellWidth/2, y*cellHeight+cellHeight/2, 90, 90);
+      else if (board[x][y] == 2) {
+
+        stroke(255, 0, 0);
+        strokeWeight(10);
+        line(xLineStart + lineSpace, yLineStart + lineSpace, xLineStart+int(cellWidth) - lineSpace, yLineStart+int(cellHeight) - lineSpace);
+        line(xLineStart + lineSpace, yLineStart+int(cellHeight) - lineSpace, xLineStart+int(cellWidth) -lineSpace, yLineStart + lineSpace);
       }
     }
   }
 }
 
-
 void mousePressed() {
   int xCord = int(mouseX/cellWidth);
   int yCord = int(mouseY/cellHeight);
-  
+
   if (playerOnePlayed == false) {
 
     if (board[xCord][yCord] == 0) {
       board[xCord][yCord] = 1;
+      playerOnePlayed = true;
     }
+  }
+
+  if (playerOnePlayed == true) {
+    playerTwoTurn();
+    playerOnePlayed = false;
   }
 }
 
