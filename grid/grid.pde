@@ -14,19 +14,21 @@ void setup() {
   ellipseMode(CENTER);
   strokeWeight(5);
   textAlign(CENTER);
-  textSize(30);
+  textSize(40);
 
   cellWidth = width / cols;
   cellHeight = height / rows;
   lineSpace = 30;
 
   board = new int[cols][cols];
+  
 }
 
 void draw() {
   displayBoard();
   gameBoard();
-  //checkIfGameOver();
+  checkIfGameOver();
+  
 }
 
 void displayBoard() {
@@ -91,5 +93,6 @@ void mousePressed() {
 void keyPressed() {
   if (key == 'r') {
     board = new int[cols][rows];
+    winner = 0;
   }
 }
