@@ -1,12 +1,16 @@
 boolean playerOnePlayed, playerTwoPlayed; //<>//
 int winner = 0;
-boolean gameOver = false;
+String endMessage; 
 
 void playerTwoTurn() {
+// If player one has played the computer picks an empty square
   playerTwoPlayed = false;
-
+  
   if (playerOnePlayed == true) {
+  // setting x and y to run through the array in a while loop  
     int x = 0;
+  
+  // use of while loop so it does not run if player two has played  
     while (x < cols && playerTwoPlayed == false)
     {
       int y = 0;
@@ -15,7 +19,6 @@ void playerTwoTurn() {
         if (board[x][y] == 0) {
           board[x][y] = 2;
           playerTwoPlayed = true;
-          println(x, y);
         }
         y++;
       }
@@ -26,7 +29,9 @@ void playerTwoTurn() {
 }
 
 void checkIfGameOver() {
+  // checks all winning situations 
   fill(0, 255, 0);
+  endMessage = "Player " +winner+ " wins";
   
   for (int x = 0; x < cols; x++) 
   {
@@ -37,18 +42,24 @@ void checkIfGameOver() {
         winner = board[x][0];
       }
       
-      // checking cols
+      // checking columns
       if (board[0][y] == board[1][y] && board[0][y] == board[2][y] && board[0][x] != 0) {
         winner = board[0][y];
       }
       
+      // checking diagonal #1
+      if (board[0][0] == board[1][1] && board[0][0] == board[2][2] && board[0][0] !=0) {
+        winner = board[0][0];
+      }
       
-      
-      
+      // checking diagonal #2
+      if (board[2][0] == board[1][1] && board[2][0] == board[0][2] && board[0][0] !=0) {
+        winner = board[2][0];
+      }                             
     }
   }
   if (winner != 0) {
-    text("Player " +winner+ "wins", width / 2, height / 2);
+    text(endMessage + "\n Press r to restart", width / 2, height / 2);
   }
 }
   

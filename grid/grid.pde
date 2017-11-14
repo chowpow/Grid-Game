@@ -20,8 +20,7 @@ void setup() {
   cellHeight = height / rows;
   lineSpace = 30;
 
-  board = new int[cols][cols];
-  
+  board = new int[cols][cols]; 
 }
 
 void draw() {
@@ -32,6 +31,7 @@ void draw() {
 }
 
 void displayBoard() {
+  // initial setup of the grid
   for (int x = 0; x < cols; x++) 
   {
     for (int y = 0; y < rows; y++)
@@ -45,7 +45,7 @@ void displayBoard() {
 }
 
 void gameBoard() {
-
+  // draws the 'O's and 'X's dependng on the value of a square
   for (int x = 0; x < cols; x++) 
   {
     for (int y = 0; y < rows; y++)
@@ -54,7 +54,7 @@ void gameBoard() {
       yLineStart = y*int(cellHeight);
 
       if (board[x][y] == 1) {
-
+        // draws the Os
         noFill();
         stroke(0, 0, 255);
         strokeWeight(5);
@@ -62,7 +62,7 @@ void gameBoard() {
       } 
       
       else if (board[x][y] == 2) {
-
+        // draws the Xs
         stroke(255, 0, 0);
         strokeWeight(10);
         line(xLineStart + lineSpace, yLineStart + lineSpace, xLineStart+int(cellWidth) - lineSpace, yLineStart+int(cellHeight) - lineSpace);
@@ -91,7 +91,8 @@ void mousePressed() {
 }
 
 void keyPressed() {
-  if (key == 'r') {
+  // reset button
+  if (key == 'r' || key == 'R') {
     board = new int[cols][rows];
     winner = 0;
   }
